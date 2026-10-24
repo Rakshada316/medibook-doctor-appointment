@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediBook | Doctor Appointment</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f7fc;
+            color: #26364a;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2eaf2;
+        }
+
+        .logo {
+            color: #167d9a;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .tagline {
+            color: #637487;
+            font-size: 14px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 35px 20px 25px;
+        }
+
+        .hero h1 {
+            color: #173f5f;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .hero p {
+            color: #65778a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto 45px;
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(34, 76, 112, 0.09);
+        }
+
+        .form-heading {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #173f5f;
+        }
+
+        .form-description {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #354b60;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d5e0eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #fff;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #1687a7;
+            box-shadow: 0 0 0 3px rgba(22, 135, 167, 0.12);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .hint {
+            color: #78899a;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #167d9a;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #10677f;
+        }
+
+        .notice {
+            margin-top: 18px;
+            padding: 12px;
+            background: #edf8fb;
+            border-radius: 8px;
+            color: #426779;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #78899a;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 16px 5%;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .container {
+                margin: 0 14px 30px;
+                padding: 22px 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">🩺 MediBook</div>
+        <div class="tagline">Your Health, Our Priority</div>
+    </header>
+
+    <section class="hero">
+        <h1>Book Your Doctor Appointment</h1>
+        <p>Complete the form below to submit your appointment request.</p>
+    </section>
+
+    <main class="container">
+        <h2 class="form-heading">Patient Details</h2>
+        <p class="form-description">
+            Please provide accurate information in all required fields.
+        </p>
+
+        <form action="/book-appointment" method="POST" novalidate>
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="name">Full Name *</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        minlength="2"
+                        maxlength="80"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="mobile">Mobile Number *</label>
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        inputmode="numeric"
+                        placeholder="10-digit mobile number"
+                        title="Enter exactly 10 digits"
+                        required
+                    >
+                </div>
+
+                <div class="field full-width">
+                    <label for="email">Email Address *</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="age">Age *</label>
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        min="1"
+                        max="100"
+                        step="1"
+                        placeholder="Age (1–100)"
+                        required
+                    >
+                    <span class="hint">Enter a whole number between 1 and 100.</span>
+                </div>
+
+                <div class="field">
+                    <label for="doctor">Select Doctor *</label>
+                    <select id="doctor" name="doctor" required>
+                        <option value="">Choose a doctor</option>
+                        <option value="General Physician">General Physician</option>
+                        <option value="Dentist">Dentist</option>
+                        <option value="Dermatologist">Dermatologist</option>
+                        <option value="Pediatrician">Pediatrician</option>
+                    </select>
+                </div>
+
+                <div class="field full-width">
+                    <label for="date">Appointment Date *</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="field full-width">
+                    <label for="symptoms">Reason for Appointment *</label>
+                    <textarea
+                        id="symptoms"
+                        name="symptoms"
+                        rows="3"
+                        minlength="3"
+                        maxlength="500"
+                        placeholder="Briefly describe your reason for visiting"
+                        required
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <button type="submit">Submit Appointment Request →</button>
+
+            <div class="notice">
+                <strong>Note:</strong> Please verify your details before submitting.
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        © 2026 MediBook | Doctor Appointment Booking System
+    </footer>
+
+</body>
+</html>
